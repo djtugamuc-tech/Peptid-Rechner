@@ -38,6 +38,7 @@ import de.peptidrechner.app.data.tracking.InjectionEntry
 import de.peptidrechner.app.data.tracking.TrackingRepository
 import de.peptidrechner.app.ui.components.GlassCard
 import de.peptidrechner.app.ui.fmt
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.JetMono
 import java.text.SimpleDateFormat
@@ -55,7 +56,7 @@ fun TrackerScreen() {
     val thisWeek = entries.count { it.timestamp >= weekAgo }
     val grouped = entries.groupBy { dayKey(it.timestamp) }
 
-    Box(Modifier.fillMaxSize().background(Brand.Bg)) {
+    Box(Modifier.fillMaxSize().background(AppC.bg)) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 24.dp),
@@ -103,14 +104,14 @@ fun TrackerScreen() {
                         Text(
                             "Noch keine Einträge",
                             style = MaterialTheme.typography.titleMedium,
-                            color = Brand.TextStrong,
+                            color = AppC.textStrong,
                             fontWeight = FontWeight.Bold,
                         )
                         Spacer(Modifier.height(4.dp))
                         Text(
                             "Tippe im Rechner auf »Injektion protokollieren«, um deinen Verlauf hier zu sehen.",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = Brand.TextLight,
+                            color = AppC.textLight,
                         )
                     }
                 }
@@ -121,7 +122,7 @@ fun TrackerScreen() {
                     Text(
                         day.uppercase(),
                         style = MaterialTheme.typography.labelMedium,
-                        color = Brand.TextMuted,
+                        color = AppC.textMuted,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(start = 18.dp, top = 12.dp, bottom = 2.dp),
                     )
@@ -164,12 +165,12 @@ private fun EntryRow(entry: InjectionEntry, modifier: Modifier = Modifier) {
             }
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
-                Text(entry.peptideName, style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong)
+                Text(entry.peptideName, style = MaterialTheme.typography.titleMedium, color = AppC.textStrong)
                 Text(
                     "${entry.doseText} · ${entry.units.fmt(1)} IE · ${timeOf(entry.timestamp)}",
                     style = MaterialTheme.typography.bodyMedium,
                     fontFamily = JetMono,
-                    color = Brand.TextLight,
+                    color = AppC.textLight,
                 )
             }
             Box(
@@ -179,7 +180,7 @@ private fun EntryRow(entry: InjectionEntry, modifier: Modifier = Modifier) {
                     .clickable { TrackingRepository.delete(entry.id) },
                 contentAlignment = Alignment.Center,
             ) {
-                Icon(Icons.Default.DeleteOutline, contentDescription = "Löschen", tint = Brand.TextMuted, modifier = Modifier.size(20.dp))
+                Icon(Icons.Default.DeleteOutline, contentDescription = "Löschen", tint = AppC.textMuted, modifier = Modifier.size(20.dp))
             }
         }
     }

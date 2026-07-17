@@ -53,6 +53,7 @@ import androidx.core.content.ContextCompat
 import de.peptidrechner.app.data.reminder.ReminderConfig
 import de.peptidrechner.app.data.reminder.ReminderStore
 import de.peptidrechner.app.notify.ReminderScheduler
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.JetMono
 import java.text.SimpleDateFormat
@@ -102,11 +103,11 @@ fun ReminderCard(modifier: Modifier = Modifier) {
             }
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
-                Text("Erinnerung", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+                Text("Erinnerung", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
                 Text(
                     if (config.enabled) "${config.intervalLabel} · ${config.timeLabel}" else "Aus",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Brand.TextLight,
+                    color = AppC.textLight,
                 )
             }
             Switch(
@@ -127,18 +128,18 @@ fun ReminderCard(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(Brand.CardBgAlt)
+                        .background(AppC.cardBgAlt)
                         .clickable { showTimePicker = true }
                         .padding(14.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
-                    Text("Uhrzeit", style = MaterialTheme.typography.bodyLarge, color = Brand.TextStrong)
+                    Text("Uhrzeit", style = MaterialTheme.typography.bodyLarge, color = AppC.textStrong)
                     Text(config.timeLabel, fontFamily = JetMono, fontSize = 16.sp, color = Brand.Primary, fontWeight = FontWeight.Bold)
                 }
 
                 Spacer(Modifier.height(12.dp))
-                Text("Häufigkeit", style = MaterialTheme.typography.labelMedium, color = Brand.TextMuted, fontWeight = FontWeight.Bold)
+                Text("Häufigkeit", style = MaterialTheme.typography.labelMedium, color = AppC.textMuted, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.height(6.dp))
                 IntervalSelector(config.intervalDays) { persist(config.copy(intervalDays = it)) }
 
@@ -146,7 +147,7 @@ fun ReminderCard(modifier: Modifier = Modifier) {
                 Text(
                     "Nächste Erinnerung: ${formatNext(ReminderScheduler.nextTrigger(config, System.currentTimeMillis()))}",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Brand.TextLight,
+                    color = AppC.textLight,
                 )
             }
         }

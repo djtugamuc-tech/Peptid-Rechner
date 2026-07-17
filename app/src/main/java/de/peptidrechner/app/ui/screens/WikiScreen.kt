@@ -43,6 +43,7 @@ import de.peptidrechner.app.data.Peptide
 import de.peptidrechner.app.data.PeptideRepository
 import de.peptidrechner.app.ui.components.GlassCard
 import de.peptidrechner.app.ui.components.Pill
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.JetMono
 
@@ -51,7 +52,7 @@ fun WikiScreen(onCalculate: (Peptide) -> Unit) {
     val statusBar = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
     var expanded by remember { mutableStateOf<String?>(null) }
 
-    Box(Modifier.fillMaxSize().background(Brand.Bg)) {
+    Box(Modifier.fillMaxSize().background(AppC.bg)) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 24.dp),
@@ -108,9 +109,9 @@ private fun WikiCard(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text(peptide.name, style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong)
+                Text(peptide.name, style = MaterialTheme.typography.titleMedium, color = AppC.textStrong)
                 peptide.aka?.let {
-                    Text(it, style = MaterialTheme.typography.bodyMedium, color = Brand.TextLight)
+                    Text(it, style = MaterialTheme.typography.bodyMedium, color = AppC.textLight)
                 }
             }
             Icon(
@@ -132,7 +133,7 @@ private fun WikiCard(
             InfoLine("Empf. Wasser", "${peptide.defaultWaterMl.fmt0()} ml")
             peptide.note?.let {
                 Spacer(Modifier.height(8.dp))
-                Text(it, style = MaterialTheme.typography.bodyMedium, color = Brand.TextLight)
+                Text(it, style = MaterialTheme.typography.bodyMedium, color = AppC.textLight)
             }
             Spacer(Modifier.height(14.dp))
             Box(
@@ -153,8 +154,8 @@ private fun WikiCard(
 @Composable
 private fun InfoLine(label: String, value: String) {
     Row(Modifier.fillMaxWidth().padding(vertical = 3.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-        Text(label, style = MaterialTheme.typography.bodyMedium, color = Brand.TextMuted)
-        Text(value, fontFamily = JetMono, fontSize = 13.sp, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+        Text(label, style = MaterialTheme.typography.bodyMedium, color = AppC.textMuted)
+        Text(value, fontFamily = JetMono, fontSize = 13.sp, color = AppC.textStrong, fontWeight = FontWeight.Bold)
     }
 }
 

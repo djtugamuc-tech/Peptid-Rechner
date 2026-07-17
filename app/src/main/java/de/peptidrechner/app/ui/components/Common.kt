@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 
 /** Weiße, glasige Karte mit dünnem Rand und lila-getöntem Schatten. */
@@ -38,7 +39,7 @@ fun GlassCard(
                 spotColor = Brand.Primary.copy(alpha = 0.18f),
             )
             .clip(RoundedCornerShape(radius.dp))
-            .background(Brand.CardBg)
+            .background(AppC.cardBg)
             .padding(padding),
         content = content,
     )

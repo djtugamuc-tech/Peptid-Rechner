@@ -39,6 +39,7 @@ import de.peptidrechner.app.ui.screens.InfoScreen
 import de.peptidrechner.app.ui.screens.PeptideListScreen
 import de.peptidrechner.app.ui.screens.TrackerScreen
 import de.peptidrechner.app.ui.screens.WikiScreen
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.PeptidRechnerTheme
 
@@ -75,9 +76,9 @@ private fun AppShell() {
     }
 
     Scaffold(
-        containerColor = Brand.Bg,
+        containerColor = AppC.bg,
         bottomBar = {
-            NavigationBar(containerColor = Brand.CardBg, tonalElevation = 0.dp) {
+            NavigationBar(containerColor = AppC.cardBg, tonalElevation = 0.dp) {
                 Tab.entries.forEach { t ->
                     NavigationBarItem(
                         selected = tab == t,
@@ -88,8 +89,8 @@ private fun AppShell() {
                             selectedIconColor = Color.White,
                             selectedTextColor = Brand.Primary,
                             indicatorColor = Brand.Primary,
-                            unselectedIconColor = Brand.TextMuted,
-                            unselectedTextColor = Brand.TextMuted,
+                            unselectedIconColor = AppC.textMuted,
+                            unselectedTextColor = AppC.textMuted,
                         ),
                     )
                 }

@@ -16,22 +16,43 @@ import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.Icon
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import de.peptidrechner.app.ui.components.GlassCard
+import de.peptidrechner.app.ui.components.Pill
+import de.peptidrechner.app.update.UpdateChecker
+import de.peptidrechner.app.update.UpdateInfo
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.JetMono
+import kotlinx.coroutines.launch
 
 @Composable
 fun InfoScreen() {
     val statusBar = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
-    Box(Modifier.fillMaxSize().background(Brand.Bg)) {
+    Box(Modifier.fillMaxSize().background(AppC.bg)) {
         Column(
             Modifier
                 .fillMaxSize()
@@ -53,8 +74,10 @@ fun InfoScreen() {
             }
 
             Column(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                UpdateCard()
+
                 GlassCard(radius = 20, padding = PaddingValues(18.dp), modifier = Modifier.fillMaxWidth()) {
-                    Text("Rekonstitutions-Formel", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+                    Text("Rekonstitutions-Formel", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(10.dp))
                     Formula("Konzentration", "Vial (mg) × 1000 ÷ Wasser (ml)")
                     Formula("Volumen (ml)", "Dosis (mcg) ÷ Konzentration")
@@ -64,29 +87,29 @@ fun InfoScreen() {
                     Text(
                         "Beispiel: 10 mg Vial + 2 ml Wasser, Dosis 2 mg → 5 mg/ml → 0,4 ml = 40 IE (~5 Dosen).",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Brand.TextLight,
+                        color = AppC.textLight,
                     )
                 }
 
                 GlassCard(radius = 20, padding = PaddingValues(18.dp), modifier = Modifier.fillMaxWidth()) {
-                    Text("U-100 Insulinspritze", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+                    Text("U-100 Insulinspritze", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(8.dp))
                     Text(
                         "U-100 bedeutet: 100 Einheiten (IE) = 1 ml. Die App zeigt dir immer, bis zu " +
                             "welcher IE-Markierung du aufziehst – unabhängig von der Spritzengröße.",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = Brand.TextLight,
+                        color = AppC.textLight,
                     )
                 }
 
                 GlassCard(radius = 20, padding = PaddingValues(18.dp), modifier = Modifier.fillMaxWidth()) {
-                    Text("💧 Bakteriostatisches Wasser (BAC)", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+                    Text("💧 Bakteriostatisches Wasser (BAC)", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(8.dp))
                     Text(
                         "BAC-Wasser ist steriles Wasser mit 0,9 % Benzylalkohol als Konservierungsmittel – " +
                             "damit ist die gelöste Lösung ca. 28 Tage bei 2–8 °C (Kühlschrank) haltbar.",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = Brand.TextLight,
+                        color = AppC.textLight,
                     )
                     Spacer(Modifier.height(10.dp))
                     Bullet("Es gibt keinen festen »Pflichtwert« pro Peptid – die Wassermenge wählst du, um eine praktische Konzentration zu erhalten.")
@@ -96,13 +119,13 @@ fun InfoScreen() {
                 }
 
                 GlassCard(radius = 20, padding = PaddingValues(18.dp), modifier = Modifier.fillMaxWidth()) {
-                    Text("💉 Welche Spritze kaufen?", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+                    Text("💉 Welche Spritze kaufen?", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
                     Spacer(Modifier.height(4.dp))
                     Text(
                         "Für subkutane Injektionen empfehlen Nutzer-Communities U-100 " +
                             "Insulinspritzen mit fest verbauter Nadel.",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Brand.TextLight,
+                        color = AppC.textLight,
                     )
                     Spacer(Modifier.height(12.dp))
 
@@ -139,7 +162,7 @@ fun InfoScreen() {
                                 "das gibt die genaueste Ablesung. Immer sterile Einwegspritzen, " +
                                 "danach im Sharps-Behälter entsorgen.",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = Brand.TextStrong,
+                            color = AppC.textStrong,
                         )
                     }
                 }
@@ -163,7 +186,7 @@ fun InfoScreen() {
                 Text(
                     "Daten angelehnt an peptidwiki.de · Rechenlogik nach gängigen Rekonstitutions-Beispielen",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Brand.TextMuted,
+                    color = AppC.textMuted,
                     modifier = Modifier.padding(horizontal = 4.dp),
                 )
                 Spacer(Modifier.height(24.dp))
@@ -173,10 +196,88 @@ fun InfoScreen() {
 }
 
 @Composable
+private fun UpdateCard() {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val current = remember { UpdateChecker.currentVersion(context) }
+    var loading by remember { mutableStateOf(false) }
+    var status by remember { mutableStateOf<String?>(null) }
+    var update by remember { mutableStateOf<UpdateInfo?>(null) }
+
+    GlassCard(radius = 20, padding = PaddingValues(18.dp), modifier = Modifier.fillMaxWidth()) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("⬇️ App-Update", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.width(8.dp))
+            Pill("v$current")
+        }
+        Spacer(Modifier.height(6.dp))
+        Text(
+            "Prüft automatisch die neueste Version auf GitHub und installiert sie auf Wunsch.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = AppC.textLight,
+        )
+        Spacer(Modifier.height(14.dp))
+
+        // Button „Auf Updates prüfen"
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(14.dp))
+                .background(if (loading) AppC.cardBgAlt else Brand.Primary)
+                .clickable(enabled = !loading) {
+                    loading = true; status = null; update = null
+                    scope.launch {
+                        val info = UpdateChecker.fetchLatest(context)
+                        loading = false
+                        when {
+                            info == null -> status = "Prüfung fehlgeschlagen – bist du online?"
+                            info.isNewer -> { update = info; status = "Neue Version verfügbar: ${info.version}" }
+                            else -> status = "Du hast die neueste Version ✓"
+                        }
+                    }
+                }
+                .padding(vertical = 13.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (loading) {
+                CircularProgressIndicator(Modifier.size(18.dp), color = Brand.Primary, strokeWidth = 2.dp)
+                Spacer(Modifier.width(10.dp))
+                Text("Prüfe …", color = AppC.textLight, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelLarge)
+            } else {
+                Icon(Icons.Default.Refresh, null, tint = Color.White, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(8.dp))
+                Text("Auf Updates prüfen", color = Color.White, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelLarge)
+            }
+        }
+
+        status?.let {
+            Spacer(Modifier.height(10.dp))
+            Text(it, style = MaterialTheme.typography.bodyMedium, color = if (update != null) Brand.Primary else AppC.textLight, fontWeight = FontWeight.SemiBold)
+        }
+
+        update?.let { info ->
+            Spacer(Modifier.height(12.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(14.dp))
+                    .background(Brand.primaryToAccent)
+                    .clickable { UpdateChecker.downloadAndInstall(context, info.downloadUrl) }
+                    .padding(vertical = 13.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("Jetzt aktualisieren", color = Color.White, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.labelLarge)
+            }
+        }
+    }
+}
+
+@Composable
 private fun Formula(label: String, expr: String) {
     Column(Modifier.padding(vertical = 5.dp)) {
         Text(label, style = MaterialTheme.typography.labelMedium, color = Brand.Primary, fontWeight = FontWeight.Bold)
-        Text(expr, fontFamily = JetMono, color = Brand.TextStrong, style = MaterialTheme.typography.bodyMedium)
+        Text(expr, fontFamily = JetMono, color = AppC.textStrong, style = MaterialTheme.typography.bodyMedium)
     }
 }
 
@@ -186,8 +287,8 @@ private fun Spec(label: String, value: String) {
         Modifier.fillMaxWidth().padding(vertical = 3.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        Text(label, style = MaterialTheme.typography.bodyMedium, color = Brand.TextMuted)
-        Text(value, fontFamily = JetMono, color = Brand.TextStrong, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
+        Text(label, style = MaterialTheme.typography.bodyMedium, color = AppC.textMuted)
+        Text(value, fontFamily = JetMono, color = AppC.textStrong, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Bold)
     }
 }
 
@@ -195,6 +296,6 @@ private fun Spec(label: String, value: String) {
 private fun Bullet(text: String) {
     androidx.compose.foundation.layout.Row(Modifier.padding(vertical = 3.dp)) {
         Text("•  ", color = Brand.Primary, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
-        Text(text, style = MaterialTheme.typography.bodyMedium, color = Brand.TextLight)
+        Text(text, style = MaterialTheme.typography.bodyMedium, color = AppC.textLight)
     }
 }

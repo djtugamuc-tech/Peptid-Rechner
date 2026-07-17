@@ -48,6 +48,7 @@ import de.peptidrechner.app.data.PeptideCategory
 import de.peptidrechner.app.data.PeptideRepository
 import de.peptidrechner.app.ui.components.GlassCard
 import de.peptidrechner.app.ui.components.Pill
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.JetMono
 
@@ -64,7 +65,7 @@ fun PeptideListScreen(
     }
     val statusBar = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
 
-    Box(Modifier.fillMaxSize().background(Brand.Bg)) {
+    Box(Modifier.fillMaxSize().background(AppC.bg)) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 24.dp),
@@ -81,7 +82,7 @@ fun PeptideListScreen(
                     Text(
                         "Kein Peptid gefunden für \"$query\".",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = Brand.TextLight,
+                        color = AppC.textLight,
                         modifier = Modifier.padding(24.dp),
                     )
                 }
@@ -173,7 +174,7 @@ private fun CategoryHeader(category: PeptideCategory, count: Int) {
         Text(
             category.title.uppercase(),
             style = MaterialTheme.typography.labelMedium,
-            color = Brand.TextMuted,
+            color = AppC.textMuted,
             fontWeight = FontWeight.Bold,
         )
         Spacer(Modifier.width(8.dp))
@@ -198,13 +199,13 @@ private fun PeptideRow(peptide: Peptide, onClick: () -> Unit, modifier: Modifier
                 Text(
                     peptide.name,
                     style = MaterialTheme.typography.titleMedium,
-                    color = Brand.TextStrong,
+                    color = AppC.textStrong,
                 )
                 Spacer(Modifier.height(2.dp))
                 Text(
                     peptide.aka ?: peptide.category.title,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Brand.TextLight,
+                    color = AppC.textLight,
                 )
                 Spacer(Modifier.height(4.dp))
                 Text(

@@ -18,14 +18,6 @@ object Brand {
     val AccentLight = Color(0xFFFF6BA8)
     val Cyan = Color(0xFF00D8FF)
 
-    val Bg = Color(0xFFF8F9FC)
-    val CardBg = Color(0xFFFFFFFF)
-    val CardBgAlt = Color(0xFFF3F4F8)
-    val TextStrong = Color(0xFF1A1D2E)
-    val TextLight = Color(0xFF5E6278)
-    val TextMuted = Color(0xFF9298AD)
-    val Border = Color(0xFFE4E7F0)
-    val BorderLight = Color(0xFFEDEEF5)
     val Success = Color(0xFF10B981)
     val Danger = Color(0xFFEF4444)
 

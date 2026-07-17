@@ -62,6 +62,7 @@ import de.peptidrechner.app.ui.components.Pill
 import de.peptidrechner.app.ui.components.SyringeView
 import de.peptidrechner.app.ui.fmt
 import de.peptidrechner.app.ui.formatAmountMcg
+import de.peptidrechner.app.ui.theme.AppC
 import de.peptidrechner.app.ui.theme.Brand
 import de.peptidrechner.app.ui.theme.JetMono
 
@@ -88,7 +89,7 @@ fun CalculatorScreen(
     val result = remember(input) { ReconstitutionCalculator.calculate(input) }
     val statusBar = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
 
-    Box(Modifier.fillMaxSize().background(Brand.Bg)) {
+    Box(Modifier.fillMaxSize().background(AppC.bg)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -325,7 +326,7 @@ private fun StepLabel(number: String, title: String) {
             Text(number, fontFamily = JetMono, fontSize = 13.sp, color = Color.White, fontWeight = FontWeight.Bold)
         }
         Spacer(Modifier.width(10.dp))
-        Text(title, style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+        Text(title, style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
     }
 }
 
@@ -360,7 +361,7 @@ private fun PlainNumberField(
         value = value,
         onValueChange = onValueChange,
         label = { Text(label) },
-        suffix = { Text(suffix, fontFamily = JetMono, color = Brand.TextLight) },
+        suffix = { Text(suffix, fontFamily = JetMono, color = AppC.textLight) },
         singleLine = true,
         textStyle = MaterialTheme.typography.titleLarge.copy(fontFamily = JetMono),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
@@ -368,11 +369,11 @@ private fun PlainNumberField(
         modifier = Modifier.fillMaxWidth(),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = Brand.Primary,
-            unfocusedBorderColor = Brand.Border,
+            unfocusedBorderColor = AppC.border,
             focusedLabelColor = Brand.Primary,
             cursorColor = Brand.Primary,
-            focusedContainerColor = Brand.CardBg,
-            unfocusedContainerColor = Brand.CardBg,
+            focusedContainerColor = AppC.cardBg,
+            unfocusedContainerColor = AppC.cardBg,
         ),
     )
 }
@@ -386,7 +387,7 @@ private fun ChipRow(presets: List<String>, value: String, suffix: String, onPick
                 modifier = Modifier
                     .weight(1f)
                     .clip(RoundedCornerShape(12.dp))
-                    .background(if (selected) Brand.Primary else Brand.CardBgAlt)
+                    .background(if (selected) Brand.Primary else AppC.cardBgAlt)
                     .clickable { onPick(preset) }
                     .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center,
@@ -395,7 +396,7 @@ private fun ChipRow(presets: List<String>, value: String, suffix: String, onPick
                     preset,
                     fontFamily = JetMono,
                     fontSize = 13.sp,
-                    color = if (selected) Color.White else Brand.TextLight,
+                    color = if (selected) Color.White else AppC.textLight,
                     fontWeight = FontWeight.Bold,
                 )
             }
@@ -443,7 +444,7 @@ private fun HowToCard(result: ReconstitutionResult?, peptide: Peptide, doseMcg: 
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(Icons.Default.Info, null, tint = Brand.Primary, modifier = Modifier.size(20.dp))
             Spacer(Modifier.width(8.dp))
-            Text("So gehst du vor", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+            Text("So gehst du vor", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
         }
         Spacer(Modifier.height(12.dp))
         Step(1, "Spritze das bakteriostatische Wasser langsam an der Glaswand ins Peptid-Fläschchen.")
@@ -466,7 +467,7 @@ private fun NasalCard(result: ReconstitutionResult?, doseMcg: Double) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text("🫧", fontSize = 18.sp)
             Spacer(Modifier.width(8.dp))
-            Text("Als Nasenspray", style = MaterialTheme.typography.titleMedium, color = Brand.TextStrong, fontWeight = FontWeight.Bold)
+            Text("Als Nasenspray", style = MaterialTheme.typography.titleMedium, color = AppC.textStrong, fontWeight = FontWeight.Bold)
             Spacer(Modifier.width(8.dp))
             Pill("möglich")
         }
@@ -500,10 +501,10 @@ private fun NasalStat(label: String, value: String, unit: String, modifier: Modi
             .background(Brand.Primary.copy(alpha = 0.08f))
             .padding(14.dp),
     ) {
-        Text(label, style = MaterialTheme.typography.bodyMedium, color = Brand.TextMuted)
+        Text(label, style = MaterialTheme.typography.bodyMedium, color = AppC.textMuted)
         Spacer(Modifier.height(2.dp))
         Text(value, fontFamily = JetMono, fontSize = 20.sp, color = Brand.Primary, fontWeight = FontWeight.Bold)
-        Text(unit, style = MaterialTheme.typography.bodyMedium, color = Brand.TextLight)
+        Text(unit, style = MaterialTheme.typography.bodyMedium, color = AppC.textLight)
     }
 }
 
@@ -520,7 +521,7 @@ private fun Step(number: Int, text: String) {
             Text("$number", fontFamily = JetMono, fontSize = 12.sp, color = Brand.Primary, fontWeight = FontWeight.Bold)
         }
         Spacer(Modifier.width(12.dp))
-        Text(text, style = MaterialTheme.typography.bodyLarge, color = Brand.TextLight, modifier = Modifier.padding(top = 1.dp))
+        Text(text, style = MaterialTheme.typography.bodyLarge, color = AppC.textLight, modifier = Modifier.padding(top = 1.dp))
     }
 }
 
