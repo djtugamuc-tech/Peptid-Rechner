@@ -78,3 +78,7 @@ Peptide("Name", "Handelsname", KATEGORIE, defaultVialMg, defaultWaterMl,
 Reines Rechen-/Bildungswerkzeug, **keine medizinische Beratung**. Peptide sind
 teils nicht als Arzneimittel zugelassen. Vor jeder Anwendung medizinisches
 Fachpersonal konsultieren.
+
+## Lizenz
+
+Veröffentlicht unter der [MIT-Lizenz](LICENSE).
