@@ -161,7 +161,7 @@ fun InfoScreen() {
                 }
 
                 Text(
-                    "Daten angelehnt an peptidwiki.de · Rechenlogik nach particlepeptides.com · Design-Inspiration biohk.de",
+                    "Daten angelehnt an peptidwiki.de · Rechenlogik nach gängigen Rekonstitutions-Beispielen",
                     style = MaterialTheme.typography.bodyMedium,
                     color = Brand.TextMuted,
                     modifier = Modifier.padding(horizontal = 4.dp),

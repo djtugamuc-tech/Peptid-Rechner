@@ -11,7 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
 import de.peptidrechner.app.R
 
-// Outfit (variable) – das UI-Font wie bei biohk.de
+// Outfit (variable) – das UI-Font der App
 val Outfit = FontFamily(
     Font(R.font.outfit, FontWeight.Normal, variationSettings = FontVariation.Settings(FontVariation.weight(400))),
     Font(R.font.outfit, FontWeight.Medium, variationSettings = FontVariation.Settings(FontVariation.weight(500))),

@@ -1,15 +1,42 @@
-# Peptid-Rechner (Android)
+<p align="center">
+  <img src="docs/img/banner.png" width="100%" alt="Peptid-Rechner">
+</p>
 
-Ein moderner Android-Rechner für die Rekonstitution (Anmischen) von Peptiden.
+<p align="center">
+  <img src="docs/img/logo.png" width="96" alt="Logo"><br>
+  <b>Peptid-Rechner</b><br>
+  <i>Moderner Android-Rechner für die Rekonstitution & Dosierung von Peptiden</i>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white">
+  <img src="https://img.shields.io/badge/Jetpack%20Compose-Material%203-6C3AE0?logo=jetpackcompose&logoColor=white">
+  <img src="https://img.shields.io/badge/Kotlin-2.0-F43F8A?logo=kotlin&logoColor=white">
+  <img src="https://img.shields.io/badge/License-MIT-blue">
+</p>
+
+---
+
 Der Nutzer wählt ein Peptid aus einer Liste, gibt Vial-Größe, Wassermenge und
 gewünschte Dosis ein – die App zeigt sofort, bis zu welcher **Einheiten-Markierung
 (IE)** auf einer Insulinspritze aufgezogen werden muss.
 
 Gebaut mit **Kotlin + Jetpack Compose + Material 3** (Androids modernes,
-SwiftUI-artiges UI-Framework). Das Design ist an **biohk.de** angelehnt: dunkler
-Lila-Verlaufs-Hero, Primär-Lila #6C3AE0 mit Pink-Akzent #F43F8A, glasige weiße
-Cards mit lila-getönten Schatten, Fonts **Outfit** (UI) + **JetBrains Mono**
-(Zahlen), animierte Spritzen-Visualisierung.
+SwiftUI-artiges UI-Framework): dunkler Lila-Verlaufs-Hero, Primär-Lila `#6C3AE0`
+mit Pink-Akzent `#F43F8A`, glasige weiße Cards mit lila-getönten Schatten, Fonts
+**Outfit** (UI) + **JetBrains Mono** (Zahlen), animierte Spritzen-Visualisierung.
+
+## 🎬 So funktioniert die App
+
+<p align="center">
+  <img src="docs/img/demo.gif" width="280" alt="Demo-Animation">
+</p>
+
+## 📱 Screenshots
+
+| Rechner | Peptide | Wiki | Tracker & Erinnerung |
+|:---:|:---:|:---:|:---:|
+| <img src="docs/img/screen-rechner.png" width="200"> | <img src="docs/img/screen-peptide.png" width="200"> | <img src="docs/img/screen-wiki.png" width="200"> | <img src="docs/img/screen-tracker.png" width="200"> |
 
 ## Navigation (Bottom-Tabs)
 

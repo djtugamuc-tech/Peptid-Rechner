@@ -33,7 +33,7 @@ private val BioColors = lightColorScheme(
 
 @Composable
 fun PeptidRechnerTheme(content: @Composable () -> Unit) {
-    // Fester Marken-Look wie biohk.de – kein dynamisches Material-You.
+    // Fester Marken-Look – kein dynamisches Material-You.
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

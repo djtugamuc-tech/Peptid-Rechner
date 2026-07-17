@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 /**
- * Design-Tokens angelehnt an biohk.de:
+ * Design-Tokens der App:
  * Primär Lila #6C3AE0, Akzent Pink #F43F8A, heller Hintergrund,
  * dunkler Lila-Hero-Verlauf, lila-getönte Schatten, große Radien.
  */

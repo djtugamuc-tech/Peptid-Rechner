@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.peptidrechner.app.ui.theme.Brand
 
-/** Weiße, glasige Karte mit dünnem Rand und lila-getöntem Schatten (biohk-Look). */
+/** Weiße, glasige Karte mit dünnem Rand und lila-getöntem Schatten. */
 @Composable
 fun GlassCard(
     modifier: Modifier = Modifier,

@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A0A1C"/>
+      <stop offset="0.35" stop-color="#241056"/>
+      <stop offset="0.72" stop-color="#6C3AE0"/>
+      <stop offset="1" stop-color="#F43F8A"/>
+    </linearGradient>
+    <radialGradient id="glowC" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00D8FF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#00D8FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowP" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF6BA8" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#FF6BA8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="barrel" x1="0" y1="155" x2="0" y2="245" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0.22"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="700" y1="0" x2="1120" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF6BA8"/>
+      <stop offset="0.55" stop-color="#B15CE8"/>
+      <stop offset="1" stop-color="#00D8FF"/>
+    </linearGradient>
+    <clipPath id="barrelClip">
+      <rect x="700" y="158" width="420" height="84" rx="42"/>
+    </clipPath>
+  </defs>
+
+  <!-- Hintergrund -->
+  <rect x="0" y="0" width="1280" height="400" rx="0" fill="url(#bg)"/>
+  <circle cx="1050" cy="70" r="260" fill="url(#glowC)"/>
+  <circle cx="1180" cy="360" r="240" fill="url(#glowP)"/>
+  <circle cx="120" cy="360" r="200" fill="url(#glowP)"/>
+
+  <!-- 3D-Spritze -->
+  <g transform="translate(70 -34) rotate(-16 910 200)">
+    <!-- Schlagschatten -->
+    <g transform="translate(10 22)" opacity="0.35">
+      <rect x="700" y="158" width="420" height="84" rx="42" fill="#000000"/>
+      <rect x="1120" y="192" width="120" height="16" rx="8" fill="#000000"/>
+      <rect x="590" y="188" width="115" height="24" rx="12" fill="#000000"/>
+    </g>
+
+    <!-- Nadel + Ansatz -->
+    <rect x="1128" y="194" width="118" height="12" rx="6" fill="#EAEAF2"/>
+    <path d="M1118 176 L1140 188 L1140 212 L1118 224 Z" fill="#EAEAF2"/>
+    <!-- Kolben + Daumenstütze -->
+    <rect x="600" y="190" width="112" height="20" rx="10" fill="#EAEAF2"/>
+    <rect x="584" y="168" width="26" height="64" rx="10" fill="#EAEAF2"/>
+
+    <!-- Zylinder -->
+    <rect x="700" y="158" width="420" height="84" rx="42" fill="url(#barrel)" stroke="#FFFFFF" stroke-width="5"/>
+    <!-- Flüssigkeit -->
+    <g clip-path="url(#barrelClip)">
+      <rect x="700" y="158" width="238" height="84" fill="url(#liquid)"/>
+      <rect x="726" y="172" width="360" height="16" rx="8" fill="#ffffff" opacity="0.30"/>
+    </g>
+    <!-- Füllmarke -->
+    <rect x="934" y="160" width="5" height="80" rx="2.5" fill="#ffffff"/>
+    <!-- Skalenstriche -->
+    <g stroke="#ffffff" stroke-opacity="0.7" stroke-width="4" stroke-linecap="round">
+      <line x1="770" y1="166" x2="770" y2="186"/>
+      <line x1="840" y1="166" x2="840" y2="186"/>
+      <line x1="1000" y1="166" x2="1000" y2="186"/>
+      <line x1="1070" y1="166" x2="1070" y2="186"/>
+    </g>
+    <!-- Umriss erneut leicht -->
+    <rect x="700" y="158" width="420" height="84" rx="42" fill="none" stroke="#FFFFFF" stroke-width="5"/>
+  </g>
+
+  <!-- Badge -->
+  <g>
+    <rect x="80" y="86" width="360" height="40" rx="20" fill="#ffffff" fill-opacity="0.14"/>
+    <text x="104" y="112" fill="#FFD6E8" font-size="18" font-weight="700" letter-spacing="2">ANDROID · JETPACK COMPOSE</text>
+  </g>
+
+  <!-- Titel (extrudiert für 3D-Effekt) -->
+  <text x="82" y="228" fill="#3A0E5E" font-size="92" font-weight="800" letter-spacing="-2" opacity="0.55">Peptid-Rechner</text>
+  <text x="78" y="224" fill="#FFFFFF" font-size="92" font-weight="800" letter-spacing="-2">Peptid-Rechner</text>
+
+  <!-- Tagline -->
+  <text x="82" y="286" fill="#E9E4FF" font-size="30" font-weight="500">Rekonstitution · Dosierung · Tracking</text>
+
+  <!-- Mini-Feature-Pills -->
+  <g font-size="19" font-weight="700">
+    <rect x="82" y="316" width="176" height="40" rx="20" fill="#00D8FF" fill-opacity="0.18"/>
+    <text x="104" y="342" fill="#B9F4FF">50+ Peptide</text>
+    <rect x="270" y="316" width="196" height="40" rx="20" fill="#FF6BA8" fill-opacity="0.20"/>
+    <text x="292" y="342" fill="#FFD6E8">Spritzen-Rechner</text>
+    <rect x="478" y="316" width="168" height="40" rx="20" fill="#FFFFFF" fill-opacity="0.14"/>
+    <text x="500" y="342" fill="#FFFFFF">Nasenspray</text>
+  </g>
+</svg>
