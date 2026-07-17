@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Diagonal liegende Spritze (um Mittelpunkt rotiert) -->
+    <group
+        android:name="syringe"
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="-45">
+
+        <!-- Daumenstütze -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M18,45 h5 a2,2 0 0 1 2,2 v14 a2,2 0 0 1 -2,2 h-5 z" />
+        <!-- Kolbenstange -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M23,50 h14 v8 h-14 z" />
+        <!-- Zylinder (weiß) -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M37,45 h33 a4,4 0 0 1 4,4 v10 a4,4 0 0 1 -4,4 h-33 z" />
+        <!-- Flüssigkeit (Akzent) -->
+        <path
+            android:fillColor="#FF6BA8"
+            android:pathData="M40,47.5 h18 v13 h-18 a1.5,1.5 0 0 1 -1.5,-1.5 v-10 a1.5,1.5 0 0 1 1.5,-1.5 z" />
+        <!-- Nadel-Ansatz -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M74,50 h4 v8 h-4 z" />
+        <!-- Nadel -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M78,52.5 h12 v3 h-12 z" />
+        <!-- Skalenstriche -->
+        <path android:fillColor="#FF6C3AE0" android:pathData="M46,49 h1.6 v6 h-1.6 z" />
+        <path android:fillColor="#FF6C3AE0" android:pathData="M53,49 h1.6 v6 h-1.6 z" />
+        <path android:fillColor="#FFB0B0C8" android:pathData="M60,49 h1.6 v6 h-1.6 z" />
+        <path android:fillColor="#FFB0B0C8" android:pathData="M67,49 h1.6 v6 h-1.6 z" />
+    </group>
+</vector>

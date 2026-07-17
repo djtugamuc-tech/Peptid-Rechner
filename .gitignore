@@ -1,0 +1,20 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+app/build/
+
+# Build-Ausgaben (regenerierbar) – APK/AAB landen als GitHub-Release
+dist/
+
+# Signatur-Geheimnisse NICHT einchecken
+keystore.properties
+keystore/
+*.jks
+*.keystore
